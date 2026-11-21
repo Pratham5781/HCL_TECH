@@ -1,0 +1,7 @@
+import { useEffect,useState } from 'react';
+import { AlertTriangle,CheckCircle2,Clock3,Inbox } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { supportApi } from '../../api/supportApi';
+import StatCard from '../../components/common/StatCard';
+export default function SupportDashboard(){const [stats,setStats]=useState(null);useEffect(()=>{supportApi.dashboard().then(r=>setStats(r.data.data)).catch(()=>toast.error('Could not load support summary.'));},[]);return <div><p className="text-sm text-slate-500">Customer support / Overview</p><h1 className="mt-2 text-2xl font-bold">Support desk</h1><p className="mt-1 text-sm text-slate-500">Prioritize urgent cases, watch SLA deadlines, and keep customers updated.</p><section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"><StatCard label="Open" value={stats?.open??'—'} icon={Inbox} color="indigo"/><StatCard label="In progress" value={stats?.inProgress??'—'} icon={Clock3} color="amber"/><StatCard label="My active tickets" value={stats?.mine??'—'} icon={CheckCircle2} color="teal"/><StatCard label="Past SLA" value={stats?.overdueSla??'—'} icon={AlertTriangle} color="rose"/></section><Link to="/support/tickets" className="card mt-6 block hover:border-indigo-300"><h2 className="font-semibold">Open ticket queue</h2><p className="mt-1 text-sm text-slate-500">Filter by service, status, priority, date, or assignment and work a ticket through resolution.</p></Link></div>;}

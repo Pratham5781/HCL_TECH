@@ -1,0 +1,2 @@
+import client from './client';
+export const customerSupportApi={tickets:(params)=>client.get('/api/support/customer/tickets',{params}),ticket:(id)=>client.get(`/api/support/customer/tickets/${id}`),create:(body)=>client.post('/api/support/customer/tickets',body),comment:(id,body)=>client.post(`/api/support/customer/tickets/${id}/comments`,{body}),rate:(id,rating)=>client.post(`/api/support/customer/tickets/${id}/rating`,{rating})};

@@ -1,0 +1,3 @@
+const tones={ACTIVE:'bg-emerald-50 text-emerald-700',APPROVED:'bg-emerald-50 text-emerald-700',PAID:'bg-emerald-50 text-emerald-700',RESOLVED:'bg-emerald-50 text-emerald-700',PENDING_APPROVAL:'bg-amber-50 text-amber-700',PENDING:'bg-amber-50 text-amber-700',GENERATED:'bg-sky-50 text-sky-700',OVERDUE:'bg-rose-50 text-rose-700',REJECTED:'bg-rose-50 text-rose-700',INACTIVE:'bg-slate-100 text-slate-600',LOCKED:'bg-rose-50 text-rose-700'};
+export default function StatusBadge({ status }) { const key=String(status||'UNKNOWN').toUpperCase();return <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${tones[key]||'bg-slate-100 text-slate-600'}`}>{key.replaceAll('_',' ')}</span>; }
+
